@@ -3,10 +3,21 @@
 
 {% block content %}
 
+{% if zipcode %}
+    {{zipcode}}
+{% endif %}
 
-<h1>Hello There!</h1>
-<br>
-{{ api }}
-
+{% if api %}
+    {% if api == "Error..." %}
+        There was an error, please try again...
+    {% else %}
+    <div class="container-fluid  p-4 {{ category_color }}">
+        <h1>{{ api.0.Category.Name }}</h1>
+        <p class="fs-5">Current {{ api.0.ReportingArea }} Air Quality: {{ api.0.AQI }}</p>
+        {{category_description}}
+        
+    </div>
+    {% endif %}
+{% endif %}
 
 {% endblock %}
